@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ecommerce 1</title>
+    <style>
+        body{
+            background-color: darkgray;
+        }
+  #product_form{
+    border: 1px solid rgb(129, 124, 124);
+    width: 30%;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    height: 300px;
+    background-color: rgb(98, 157, 157);
+  }
+  
+  h1{
+    text-align: center;
+  }
+    </style>
+</head>
+<body>
+
+    <div id="menu">
+      
+        <!--Create Show Products button here, give id as "show_products". avoid making spelling mistakes in HTML id's-->
+        <button id="show_products">
+          <a href="dashboard.html">Show Products</a>
+        </button> 
+     
+      </div>
+      <h1>Amazons product details</h1>
+        
+     <form id="product_form" onsubmit="Product(event)">
+        <label> Product Name</label><br>
+    <input id="name" type="text" placeholder="enter product name"><br>
+    <label>Product category</label><br>
+    <input id="category" type="text" placeholder="enter product catageory"><br>
+    <label>Product Image</label><br>
+    <input id="image" type="text" placeholder="enter product img"><br>
+    <label>Product Price</label><br>
+    <input id="price" type="text" placeholder="enter product price"><br>
+    <label>Gender</label><br>
+    <input id="gender" type="text" placeholder="enter product gender"><br>
+    <label>sold</label><br>
+    <input id="sold" type="text" placeholder="enter product sold"><br><br>
+    <input type="submit"value="submit"id="add">
+</form>
+
+
+</body>
+</html>
+<script>
+
+function product(n,c,i,p,g,s){
+    this.name=n;
+    this.category=c;
+    this.image=i;
+    this.price=p;
+    this.gender=g;
+    this.sold=s;
+}
+function Product(event){
+    event.preventDefault()
+  window.location.reload()
+    let form=document.getElementById("product_form");
+    
+    let name=form.name.value;
+    let category=form.category.value;
+    let image=form.image.value;
+    let price=form.price.value;
+   let gender=form.gender.value;
+  let sold=form.sold.value;
+   // console.log(name,price,image,brand)
+    let p1= new product(name,category,image,price,gender,sold)
+    let data=JSON.parse(localStorage.getItem("products")) || []
+    data.push(p1);
+    localStorage.setItem("products",JSON.stringify(data));
+
+}
+
+
+</script>
